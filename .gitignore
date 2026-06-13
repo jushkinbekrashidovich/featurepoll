@@ -1,0 +1,29 @@
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Node.js
+node_modules/
+
+# Dart/Flutter
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+
+# Next.js / Vercel
+.next/
+out/
+.vercel
+
+# IDE and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Supabase
+.supabase/
