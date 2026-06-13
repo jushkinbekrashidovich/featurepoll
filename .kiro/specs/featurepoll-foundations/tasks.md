@@ -31,7 +31,7 @@ Scaffold the FeaturePoll monorepo with directory structure, steering files, conf
     - Delete original `product.md`, `tech.md`, `structure.md`, and `tally_project_plan.md` from workspace root
     - _Requirements: 2.7, 3.1, 3.2, 3.3_
 
-- [~] 3. Checkpoint - Verify directory structure
+- [x] 3. Checkpoint - Verify directory structure
   - Ensure all directories and steering files exist at expected paths, ask the user if questions arise.
 
 - [x] 4. Create environment and git configuration files
@@ -55,15 +55,15 @@ Scaffold the FeaturePoll monorepo with directory structure, steering files, conf
     - Use exact content from the design document's Component 5 specification
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7_
 
-- [ ] 5. Initialize git repository and create initial commit
-  - [-] 5.1 Initialize git and commit all scaffolding
+- [x] 5. Initialize git repository and create initial commit
+  - [x] 5.1 Initialize git and commit all scaffolding
     - Check if `.git/` already exists — skip `git init` if so
     - Run `git init` if needed
     - Stage all files with `git add .`
     - Create initial commit: `git commit -m "chore: scaffold monorepo structure and steering files"`
     - _Requirements: 6.1, 6.2, 6.3, 6.4_
 
-- [~] 6. Final checkpoint - Verify workspace readiness
+- [x] 6. Final checkpoint - Verify workspace readiness
   - Verify final structure matches Requirement 7: all steering files, READMEs, config files in place
   - Verify no loose docs remain at workspace root (`product.md`, `tech.md`, `structure.md`, `tally_project_plan.md` removed)
   - Verify `.kiro/steering/` contains exactly three files

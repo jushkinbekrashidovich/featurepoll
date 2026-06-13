@@ -1,0 +1,27 @@
+name: feature_poll
+description: Native feature-voting board for Flutter apps. 3-line integration.
+version: 0.1.0
+homepage: https://featurepoll.com
+repository: https://github.com/featurepoll/feature_poll
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: '>=3.19.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.0
+  hive_ce: ^2.6.0
+  hive_ce_flutter: ^2.1.0
+  uuid: ^4.3.0
+  package_info_plus: ^8.0.0
+  connectivity_plus: ^6.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  mocktail: ^1.0.0
+
+flutter:
