@@ -6,7 +6,6 @@ import { Testimonials } from "./sections/Testimonials";
 import { Comparison } from "./sections/Comparison";
 import { Pricing } from "./sections/Pricing";
 import { FounderNote } from "./sections/FounderNote";
-import { FinalCTA } from "./sections/FinalCTA";
 
 export const metadata: Metadata = {
   title: "FeaturePoll — feature voting for app, web & Telegram",
@@ -61,9 +60,6 @@ export default function LandingPage() {
       <Pricing />
       <section aria-label="Founder note">
         <FounderNote />
-      </section>
-      <section aria-label="Final call to action">
-        <FinalCTA />
       </section>
     </main>
   );

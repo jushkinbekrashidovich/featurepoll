@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, LayoutGrid, Rocket, Share2, Settings, ArrowUpCircle } from "lucide-react";
+import { Home, Rocket, Share2, Settings, ArrowUpCircle } from "lucide-react";
 
 interface AppSidebarProps {
   projectSlug: string;
@@ -13,9 +13,8 @@ export function AppSidebar({ projectSlug }: AppSidebarProps) {
 
   const navLinks = [
     { href: `/app/${projectSlug}/home`, label: "Home", icon: Home },
-    { href: `/app/${projectSlug}/board`, label: "Board", icon: LayoutGrid },
     { href: `/app/${projectSlug}/releases`, label: "Releases", icon: Rocket },
-    { href: `/app/${projectSlug}/share`, label: "Share & Embed", icon: Share2 },
+    { href: `/app/${projectSlug}/share`, label: "Integrate", icon: Share2 },
     { href: `/app/${projectSlug}/settings`, label: "Settings", icon: Settings },
   ];
 

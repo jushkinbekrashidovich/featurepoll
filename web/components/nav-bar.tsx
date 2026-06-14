@@ -28,7 +28,7 @@ export function NavBar() {
             <span className="text-[17px] font-bold text-accent -ml-1.5">Poll</span>
           </a>
 
-          {/* Desktop links + login */}
+          {/* Desktop links + CTA */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
@@ -41,9 +41,9 @@ export function NavBar() {
             ))}
             <a
               href="/login"
-              className="rounded-full border border-border bg-white px-4 py-1.5 text-sm font-medium text-text hover:border-text-muted transition-colors"
+              className="rounded-btn bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent/90 transition-colors"
             >
-              Log in
+              Try it free
             </a>
           </div>
 
@@ -75,9 +75,9 @@ export function NavBar() {
             <a
               href="/login"
               onClick={() => setOpen(false)}
-              className="block rounded-full border border-border bg-white px-4 py-2 text-sm font-medium text-text text-center hover:border-text-muted transition-colors mt-2"
+              className="block rounded-btn bg-accent px-4 py-2.5 text-sm font-semibold text-white text-center hover:bg-accent/90 transition-colors mt-2"
             >
-              Log in
+              Try it free
             </a>
           </div>
         </div>

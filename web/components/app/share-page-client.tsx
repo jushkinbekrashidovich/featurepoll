@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, ExternalLink, RefreshCw, Info } from "lucide-react";
+import { Copy, ExternalLink, RefreshCw } from "lucide-react";
 
 interface SharePageClientProps {
   projectSlug: string;
@@ -69,9 +69,9 @@ FeaturePoll.openBoard(from: self)`;
 
   return (
     <div>
-      <h1 className="text-lg font-bold text-text">Share & Embed</h1>
+      <h1 className="text-lg font-bold text-text">Integrate</h1>
       <p className="mt-1 text-sm text-text-muted">
-        Share your board publicly or embed it in your app
+        Add FeaturePoll to your app or share the board publicly
       </p>
 
       {/* Top section: Links + Token side by side */}
@@ -144,18 +144,6 @@ FeaturePoll.openBoard(from: self)`;
             </p>
           </div>
         </div>
-      </div>
-
-      {/* Info banner */}
-      <div className="mt-4 flex items-start gap-2.5 rounded-card border border-blue-100 bg-blue-50 px-4 py-3">
-        <Info className="mt-0.5 h-4 w-4 shrink-0 text-blue-500" />
-        <p className="text-xs text-blue-700">
-          Looking for API keys to manage your board programmatically? Find them in your{" "}
-          <a href={`/app/${projectSlug}/settings`} className="font-medium underline">
-            project settings
-          </a>
-          .
-        </p>
       </div>
 
       {/* Language selector */}

@@ -1,16 +1,14 @@
 const plans = [
   {
     name: "Free",
-    price: "$0",
-    description: "1 project · public board",
-    cta: "Get started",
+    description: "1 project · public board · community support",
+    cta: "Try it for free",
     highlighted: false,
   },
   {
     name: "Pro",
-    price: "$15/mo",
-    description: "Native SDK · Telegram · push · no branding",
-    cta: "Start Pro",
+    description: "Native SDK · push notifications · remove branding · custom theming",
+    cta: "Try it for free",
     highlighted: true,
   },
 ];
@@ -19,8 +17,8 @@ export function Pricing() {
   return (
     <section id="pricing" className="bg-surface border-y border-border py-20">
       <div className="mx-auto max-w-page px-6">
-        <h2 className="text-2xl font-bold text-text text-center mb-3">
-          Simple, honest pricing
+        <h2 className="text-2xl md:text-[32px] font-bold text-text text-center mb-3 leading-tight">
+          Turn user feedback into product growth
         </h2>
         <p className="text-sm text-text-muted text-center mb-12">
           Start free, upgrade when you&apos;re ready.
@@ -41,11 +39,10 @@ export function Pricing() {
                   Popular
                 </span>
               )}
-              <h3 className="text-lg font-bold text-text mb-1">{plan.name}</h3>
-              <p className="text-3xl font-bold text-text mb-2">{plan.price}</p>
+              <h3 className="text-lg font-bold text-text mb-3">{plan.name}</h3>
               <p className="text-sm text-text-muted mb-6">{plan.description}</p>
               <a
-                href="#hero"
+                href="/login"
                 className={`block text-center rounded-btn py-2.5 text-sm font-semibold transition-colors ${
                   plan.highlighted
                     ? "bg-accent text-white hover:bg-accent/90"

@@ -1,4 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
+import { BoardHeader } from "@/components/app/board-header";
 import type { Post } from "@/lib/types";
 
 interface HomePageProps {
@@ -10,16 +12,38 @@ const statusColumns = [
   { key: "planned", label: "Approved", color: "bg-blue-50 text-blue-600" },
   { key: "in_progress", label: "In Progress", color: "bg-amber-50 text-amber-600" },
   { key: "shipped", label: "Done", color: "bg-green-50 text-green-600" },
+  { key: "declined", label: "Rejected", color: "bg-red-50 text-red-600" },
 ] as const;
 
 export default async function ProjectHomePage({ params }: HomePageProps) {
   const { slug } = await params;
   const supabase = await createClient();
 
+  // Resolve project by slug or ID
+  let projectId: string | undefined;
+  const { data: projectBySlug } = await supabase
+    .from("projects")
+    .select("id")
+    .eq("slug", slug)
+    .single();
+
+  if (projectBySlug) {
+    projectId = projectBySlug.id;
+  } else {
+    const { data: projectById } = await supabase
+      .from("projects")
+      .select("id")
+      .eq("id", slug)
+      .single();
+    projectId = projectById?.id;
+  }
+
+  if (!projectId) redirect("/app");
+
   const { data: posts } = await supabase
     .from("posts")
     .select("*")
-    .eq("project_id", slug)
+    .eq("project_id", projectId)
     .order("vote_count", { ascending: false });
 
   const typedPosts = (posts ?? []) as Post[];
@@ -30,6 +54,7 @@ export default async function ProjectHomePage({ params }: HomePageProps) {
     planned: [],
     in_progress: [],
     shipped: [],
+    declined: [],
   };
 
   for (const post of typedPosts) {
@@ -43,28 +68,10 @@ export default async function ProjectHomePage({ params }: HomePageProps) {
 
   return (
     <div>
-      {/* Header with title, sort, and create */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-lg font-bold text-text">Your Board</h1>
-          <p className="mt-1 text-sm text-text-muted">
-            Feature requests organized by status
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <select className="rounded-md border border-neutral-200 bg-white px-3 py-1.5 text-sm text-text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent">
-            <option>Sort by Votes</option>
-            <option>Sort by Newest</option>
-            <option>Sort by Oldest</option>
-          </select>
-          <button className="rounded-btn bg-accent px-4 py-1.5 text-sm font-medium text-white hover:bg-accent/90 transition-colors">
-            Create
-          </button>
-        </div>
-      </div>
+      <BoardHeader projectId={projectId} />
 
       {/* Kanban columns */}
-      <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-5">
         {statusColumns.map((col) => (
           <div key={col.key} className="flex flex-col rounded-lg border border-neutral-200 bg-white">
             {/* Column header */}
