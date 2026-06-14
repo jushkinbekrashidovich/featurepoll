@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { createProject } from "@/app/dashboard/actions/projects";
+import { createProject } from "@/app/app/actions/projects";
 import { CopyButton } from "./copy-button";
 
 interface CreateProjectModalProps {

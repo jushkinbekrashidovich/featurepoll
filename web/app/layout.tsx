@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "FeaturePoll",
-  description: "Native Flutter feature voting and in-app feedback",
+  description: "Feature voting for app, web & Telegram",
 };
 
 export default function RootLayout({
@@ -27,25 +27,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      suppressHydrationWarning
       className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                  document.documentElement.classList.add('dark');
-                }
-              })();
-            `,
-          }}
-        />
-      </head>
-      <body className="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 font-sans antialiased">
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

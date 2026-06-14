@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { updateThemeColor } from "@/app/dashboard/actions/settings";
+import { updateThemeColor } from "@/app/app/actions/settings";
 
 interface ColorPickerProps {
   projectId: string;

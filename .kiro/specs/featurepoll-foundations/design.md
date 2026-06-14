@@ -81,14 +81,14 @@ Creates `.env.example` with grouped placeholder variables and explanatory commen
 
 # --- Supabase ---
 # Backend database and API. Get these from your Supabase project settings.
-SUPABASE_URL=your-supabase-url-here
-SUPABASE_ANON_KEY=your-supabase-anon-key-here
-SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key-here
+SUPABASE_URL=https://sxxoofnfrgcqjpysfowi.supabase.co
+SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4eG9vZm5mcmdjcWpweXNmb3dpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzNDUyNzIsImV4cCI6MjA5NjkyMTI3Mn0.jV8QDs0Tw0i6yf5SDpJEjQxi7GJIavsErSXg5i4tYkI
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4eG9vZm5mcmdjcWpweXNmb3dpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MTM0NTI3MiwiZXhwIjoyMDk2OTIxMjcyfQ.-CLgpEjV3s7hQgXlZwEJ1pB8Jw18a2CEeJFKf_gKcZ0
 
 # --- Firebase ---
 # Push notifications via Firebase Cloud Messaging.
 # Get these from your Firebase project console.
-FIREBASE_PROJECT_ID=your-firebase-project-id-here
+FIREBASE_PROJECT_ID=featurepoll
 FIREBASE_API_KEY=your-firebase-api-key-here
 FIREBASE_MESSAGING_SENDER_ID=your-firebase-messaging-sender-id-here
 ```

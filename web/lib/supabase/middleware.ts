@@ -25,26 +25,28 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
+  const pathname = request.nextUrl.pathname;
+
+  // Skip auth check for auth callback
+  if (pathname.startsWith("/auth/callback")) {
+    return supabaseResponse;
+  }
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Unauthenticated user trying to access protected route
-  if (
-    !user &&
-    request.nextUrl.pathname.startsWith("/dashboard") &&
-    !request.nextUrl.pathname.startsWith("/dashboard/login") &&
-    !request.nextUrl.pathname.startsWith("/dashboard/auth")
-  ) {
+  // Unauthenticated user trying to access protected /app routes
+  if (!user && pathname.startsWith("/app")) {
     const url = request.nextUrl.clone();
-    url.pathname = "/dashboard/login";
+    url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  // Authenticated user on login page → redirect to dashboard
-  if (user && request.nextUrl.pathname === "/dashboard/login") {
+  // Authenticated user on login page → redirect to /app
+  if (user && pathname === "/login") {
     const url = request.nextUrl.clone();
-    url.pathname = "/dashboard";
+    url.pathname = "/app";
     return NextResponse.redirect(url);
   }
 

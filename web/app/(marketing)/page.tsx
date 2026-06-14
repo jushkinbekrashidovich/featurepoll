@@ -1,23 +1,29 @@
 import type { Metadata } from "next";
-import { HeroSection } from "@/components/hero-section";
-import { SocialProofStrip } from "@/components/social-proof-strip";
-import { FeaturesSection } from "@/components/features-section";
-import { PricingSection } from "@/components/pricing-section";
+import { Hero } from "./sections/Hero";
+import { HowItWorks } from "./sections/HowItWorks";
+import { Features } from "./sections/Features";
+import { Testimonials } from "./sections/Testimonials";
+import { Comparison } from "./sections/Comparison";
+import { Pricing } from "./sections/Pricing";
+import { FounderNote } from "./sections/FounderNote";
+import { FinalCTA } from "./sections/FinalCTA";
 
 export const metadata: Metadata = {
-  title: "FeaturePoll — Native Flutter Feature Voting & In-App Feedback",
+  title: "FeaturePoll — feature voting for app, web & Telegram",
   description:
-    "Add a native feature-request board to your Flutter app in 3 lines of code. Anonymous voting, no WebView, works offline.",
+    "Collect feature requests and votes from inside your app, your website, and your Telegram community. Native SDK, anonymous voting, no sign-up for users.",
   keywords: [
     "Flutter feature voting",
     "in-app feedback",
     "feature request board",
     "mobile feedback SDK",
+    "collect feature requests without sign-up",
+    "feature voting Telegram",
   ],
   openGraph: {
-    title: "FeaturePoll — Native Flutter Feature Voting",
+    title: "FeaturePoll — feature voting for app, web & Telegram",
     description:
-      "Add a native feature-request board to your Flutter app in 3 lines of code.",
+      "Collect feature requests and votes from inside your app, your website, and your community — all in one place.",
     url: "https://featurepoll.dev",
     siteName: "FeaturePoll",
     images: [
@@ -27,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FeaturePoll — Native Flutter Feature Voting",
+    title: "FeaturePoll — feature voting for app, web & Telegram",
     description:
-      "Add a native feature-request board to your Flutter app in 3 lines of code.",
+      "Collect feature requests and votes from inside your app, your website, and your community.",
     images: ["/og-image.png"],
   },
 };
@@ -38,16 +44,26 @@ export default function LandingPage() {
   return (
     <main>
       <section id="hero" aria-label="Hero">
-        <HeroSection />
+        <Hero />
       </section>
-      <section id="social-proof" aria-label="Social proof">
-        <SocialProofStrip />
+      <section aria-label="How it works">
+        <HowItWorks />
       </section>
       <section id="features" aria-label="Features">
-        <FeaturesSection />
+        <Features />
       </section>
-      <section id="pricing" aria-label="Pricing">
-        <PricingSection />
+      <section aria-label="Testimonials">
+        <Testimonials />
+      </section>
+      <section aria-label="Comparison">
+        <Comparison />
+      </section>
+      <Pricing />
+      <section aria-label="Founder note">
+        <FounderNote />
+      </section>
+      <section aria-label="Final call to action">
+        <FinalCTA />
       </section>
     </main>
   );

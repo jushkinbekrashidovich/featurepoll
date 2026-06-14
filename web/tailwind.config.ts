@@ -1,17 +1,25 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "class",
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
+        page: "#FBFAF9",
+        surface: "#FFFFFF",
+        muted: "#FAF6F0",
+        border: "#EFE7DC",
         accent: {
-          DEFAULT: "#6366f1",
-          hover: "#4f46e5",
-          light: "#eef2ff",
-          dark: "#312e81",
+          DEFAULT: "#E16540",
+          tint: "#FAECE7",
+          text: "#993C1D",
         },
+        text: {
+          DEFAULT: "#1A1A1A",
+          muted: "#57534E",
+          faint: "#8A8279",
+        },
+        success: "#1D9E75",
         neutral: {
           50: "#fafafa",
           100: "#f5f5f5",
@@ -30,12 +38,12 @@ const config: Config = {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         mono: ["var(--font-jetbrains-mono)", "Fira Code", "monospace"],
       },
-      spacing: {
-        section: "6rem",
-        container: "4rem",
-      },
       maxWidth: {
-        page: "1200px",
+        page: "1080px",
+      },
+      borderRadius: {
+        btn: "11px",
+        card: "12px",
       },
     },
   },

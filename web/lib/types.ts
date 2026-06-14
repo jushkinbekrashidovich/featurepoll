@@ -2,6 +2,7 @@ export interface Project {
   id: string;
   developer_id: string;
   name: string;
+  slug: string;
   platform: string | null;
   publishable_key: string;
   theme_json: ThemeJson | null;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { updatePostStatus } from "@/app/dashboard/actions/posts";
+import { updatePostStatus } from "@/app/app/actions/posts";
 import type { PostStatus } from "@/lib/types";
 
 interface StatusDropdownProps {
