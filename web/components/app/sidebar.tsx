@@ -19,9 +19,9 @@ export function AppSidebar({ projectSlug }: AppSidebarProps) {
   ];
 
   return (
-    <aside className="flex w-[170px] shrink-0 flex-col border-r border-neutral-200 bg-white">
-      <nav className="flex-1 px-2 py-3">
-        <ul className="space-y-0.5">
+    <aside className="flex w-[200px] shrink-0 flex-col border-r border-neutral-200 bg-white">
+      <nav className="flex-1 px-3 py-4">
+        <ul className="space-y-1">
           {navLinks.map((link) => {
             const isActive = pathname.startsWith(link.href);
             const Icon = link.icon;
@@ -30,7 +30,7 @@ export function AppSidebar({ projectSlug }: AppSidebarProps) {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-[13px] font-medium transition-colors ${
+                  className={`flex items-center gap-2.5 rounded-md px-3 py-2.5 text-sm font-medium transition-colors ${
                     isActive
                       ? "bg-accent-tint text-accent-text"
                       : "text-text-muted hover:bg-neutral-50 hover:text-text"
@@ -46,10 +46,10 @@ export function AppSidebar({ projectSlug }: AppSidebarProps) {
       </nav>
 
       {/* Upgrade link at bottom */}
-      <div className="border-t border-neutral-100 px-2 py-3">
+      <div className="border-t border-neutral-100 px-3 py-4">
         <a
           href="/app/upgrade"
-          className="flex items-center gap-2.5 rounded-md px-3 py-2 text-[13px] font-medium text-accent hover:bg-accent-tint transition-colors"
+          className="flex items-center gap-2.5 rounded-md px-3 py-2.5 text-sm font-medium text-accent hover:bg-accent-tint transition-colors"
         >
           <ArrowUpCircle className="h-4 w-4" />
           Upgrade
