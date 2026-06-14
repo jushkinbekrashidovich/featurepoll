@@ -94,32 +94,39 @@ export default async function ProjectHomePage({ params }: HomePageProps) {
                 grouped[col.key].map((post) => (
                   <div
                     key={post.id}
-                    className="rounded-md border border-neutral-100 bg-white p-3 shadow-sm"
+                    className="rounded-lg border border-neutral-200 bg-white p-3 shadow-sm"
                   >
-                    <h3 className="text-sm font-medium text-text">{post.title}</h3>
+                    {/* Top row: vote + title + menu */}
+                    <div className="flex items-start gap-3">
+                      {/* Vote button */}
+                      <div className="flex flex-col items-center rounded-md border border-neutral-200 px-2.5 py-1.5 text-center">
+                        <svg className="h-3 w-3 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+                        </svg>
+                        <span className="text-sm font-semibold text-text">{post.vote_count ?? 0}</span>
+                      </div>
+
+                      {/* Title */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm font-semibold text-text leading-tight">{post.title}</h3>
+                      </div>
+
+                      {/* Three dots menu */}
+                      <button className="shrink-0 p-1 text-neutral-400 hover:text-text">
+                        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                          <circle cx="12" cy="5" r="1.5"/>
+                          <circle cx="12" cy="12" r="1.5"/>
+                          <circle cx="12" cy="19" r="1.5"/>
+                        </svg>
+                      </button>
+                    </div>
+
+                    {/* Description below */}
                     {post.description && (
-                      <p className="mt-1 line-clamp-2 text-xs text-text-muted">
+                      <p className="mt-2 text-xs text-text-muted line-clamp-2">
                         {post.description}
                       </p>
                     )}
-                    <div className="mt-2 flex items-center gap-2">
-                      <span className="inline-flex items-center gap-1 text-xs text-text-faint">
-                        <svg
-                          className="h-3 w-3"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 15l7-7 7 7"
-                          />
-                        </svg>
-                        {post.vote_count ?? 0}
-                      </span>
-                    </div>
                   </div>
                 ))
               )}
