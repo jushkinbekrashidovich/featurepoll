@@ -70,8 +70,8 @@ export default async function ProjectHomePage({ params }: HomePageProps) {
     <div>
       <BoardHeader projectId={projectId} />
 
-      {/* Kanban columns — horizontal scroll */}
-      <div className="mt-6 flex gap-4 overflow-x-auto pb-4">
+      {/* Kanban columns — horizontal scroll, full height */}
+      <div className="mt-6 flex gap-4 overflow-x-auto pb-4" style={{ minHeight: "calc(100vh - 200px)" }}>
         {statusColumns.map((col) => (
           <div key={col.key} className="flex min-w-[280px] flex-1 flex-col rounded-lg border border-neutral-200 bg-white">
             {/* Column header */}
