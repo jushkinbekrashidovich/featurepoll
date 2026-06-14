@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { BoardHeader } from "@/components/app/board-header";
+import { PostCardMenu } from "@/components/app/post-card-menu";
 import type { Post } from "@/lib/types";
 
 interface HomePageProps {
@@ -112,13 +113,7 @@ export default async function ProjectHomePage({ params }: HomePageProps) {
                       </div>
 
                       {/* Three dots menu */}
-                      <button className="shrink-0 p-1 text-neutral-400 hover:text-text">
-                        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                          <circle cx="12" cy="5" r="1.5"/>
-                          <circle cx="12" cy="12" r="1.5"/>
-                          <circle cx="12" cy="19" r="1.5"/>
-                        </svg>
-                      </button>
+                      <PostCardMenu postId={post.id} currentStatus={post.status} />
                     </div>
 
                     {/* Description below */}
