@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { updatePostStatus } from "@/app/app/actions/posts";
+import { updatePostStatus, deletePost } from "@/app/app/actions/posts";
 
 interface PostCardMenuProps {
   postId: string;
@@ -43,7 +43,11 @@ export function PostCardMenu({ postId, currentStatus }: PostCardMenuProps) {
   }
 
   async function handleDelete() {
-    // TODO: implement delete action
+    try {
+      await deletePost(postId);
+    } catch {
+      // Handle error silently
+    }
     setOpen(false);
   }
 

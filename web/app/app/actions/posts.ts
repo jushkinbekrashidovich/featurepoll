@@ -25,6 +25,20 @@ export async function updatePostStatus(postId: string, status: PostStatus) {
   return { success: true };
 }
 
+export async function deletePost(postId: string) {
+  const supabase = await createClient();
+
+  // Delete votes first (foreign key constraint)
+  await supabase.from("votes").delete().eq("post_id", postId);
+
+  const { error } = await supabase.from("posts").delete().eq("id", postId);
+
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/app", "layout");
+  return { success: true };
+}
+
 export async function createPost(projectId: string, title: string, description: string, status: PostStatus) {
   if (!title.trim()) throw new Error("Title is required");
   if (!validStatuses.includes(status)) throw new Error("Invalid status");
@@ -38,7 +52,7 @@ export async function createPost(projectId: string, title: string, description: 
       title: title.trim(),
       description: description.trim() || null,
       status,
-      device_id: "00000000-0000-0000-0000-000000000000", // admin-created post
+      device_id: "00000000-0000-0000-0000-000000000000",
     });
 
   if (error) throw new Error(error.message);
