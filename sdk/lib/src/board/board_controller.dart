@@ -19,7 +19,7 @@ import '../core/feature_poll_main.dart';
 /// management dependency required.
 class BoardController extends ChangeNotifier {
   List<Post> _posts = [];
-  String _activeFilter = 'open';
+  String _activeFilter = 'all';
   bool _isLoading = false;
   String? _error;
 
@@ -31,9 +31,13 @@ class BoardController extends ChangeNotifier {
   }
 
   /// Posts filtered by [activeFilter] and sorted by vote count descending.
-  List<Post> get filteredPosts =>
-      _posts.where((p) => p.status == _activeFilter).toList()
-        ..sort((a, b) => b.voteCount.compareTo(a.voteCount));
+  List<Post> get filteredPosts {
+    final posts = _activeFilter == 'all'
+        ? _posts.toList()
+        : _posts.where((p) => p.status == _activeFilter).toList();
+    posts.sort((a, b) => b.voteCount.compareTo(a.voteCount));
+    return posts;
+  }
 
   /// The currently active status filter (e.g. 'open', 'planned').
   String get activeFilter => _activeFilter;

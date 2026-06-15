@@ -39,7 +39,7 @@ class _BoardScreenState extends State<BoardScreen> {
       child: Scaffold(
         backgroundColor: Colors.grey[50],
         appBar: AppBar(
-          title: const Text('Feature Requests'),
+          title: const Text('FeaturePoll'),
           centerTitle: true,
           actions: [
             TextButton(
@@ -224,6 +224,7 @@ class _BoardScreenState extends State<BoardScreen> {
                                           color: Colors.grey[600])),
                                   const SizedBox(height: 8),
                                   ...[
+                                    ('all', 'All'),
                                     ('open', 'Pending'),
                                     ('planned', 'Approved'),
                                     ('in_progress', 'In Progress'),
