@@ -63,15 +63,6 @@ class _BoardScreenState extends State<BoardScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Title
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 16, 20, 12),
-                  child: Text(
-                    'Feature Requests',
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
 
                 // Toolbar: Sort dropdown + search + notification + add button
                 Padding(
@@ -156,104 +147,66 @@ class _BoardScreenState extends State<BoardScreen> {
                               offset: const Offset(0, 4)),
                         ],
                       ),
-                      child: Row(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          // Sort
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('SORT',
-                                      style: TextStyle(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.grey[600])),
-                                  const SizedBox(height: 8),
-                                  ...[
-                                    'Top',
-                                    'All'
-                                  ].map((sort) => GestureDetector(
-                                        onTap: () => setState(() {
-                                          _sortBy = sort;
-                                          _showSortFilter = false;
-                                        }),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 6),
-                                          child: Row(
-                                            children: [
-                                              if (_sortBy == sort)
-                                                Container(
-                                                    width: 6,
-                                                    height: 6,
-                                                    decoration: BoxDecoration(
-                                                        color: accent,
-                                                        shape:
-                                                            BoxShape.circle)),
-                                              if (_sortBy == sort)
-                                                const SizedBox(width: 8),
-                                              Text(sort,
-                                                  style: TextStyle(
-                                                      fontSize: 14,
-                                                      fontWeight: _sortBy ==
-                                                              sort
-                                                          ? FontWeight.w600
-                                                          : FontWeight.w400)),
-                                            ],
-                                          ),
-                                        ),
-                                      )),
-                                ],
-                              ),
-                            ),
-                          ),
-                          // Filter
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('FILTER',
-                                      style: TextStyle(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.grey[600])),
-                                  const SizedBox(height: 8),
-                                  ...[
-                                    ('all', 'All'),
-                                    ('open', 'Pending'),
-                                    ('planned', 'Approved'),
-                                    ('in_progress', 'In Progress'),
-                                    ('shipped', 'Done'),
-                                    ('declined', 'Rejected'),
-                                  ].map((entry) => GestureDetector(
-                                        onTap: () {
-                                          _controller.setFilter(entry.$1);
-                                          setState(
-                                              () => _showSortFilter = false);
-                                        },
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 6),
-                                          child: Text(entry.$2,
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight:
-                                                    _controller.activeFilter ==
-                                                            entry.$1
-                                                        ? FontWeight.w600
-                                                        : FontWeight.w400,
-                                              )),
-                                        ),
-                                      )),
-                                ],
-                              ),
-                            ),
-                          ),
+                          ...[
+                            ('top', 'Top'),
+                            ('all', 'All'),
+                            ('open', 'Pending'),
+                            ('planned', 'Approved'),
+                            ('in_progress', 'In Progress'),
+                            ('shipped', 'Done'),
+                            ('declined', 'Rejected'),
+                          ].map((entry) => GestureDetector(
+                                onTap: () {
+                                  if (entry.$1 == 'top') {
+                                    _controller.setFilter('all');
+                                    setState(() {
+                                      _sortBy = 'Top';
+                                      _showSortFilter = false;
+                                    });
+                                  } else {
+                                    _controller.setFilter(entry.$1);
+                                    setState(() {
+                                      _sortBy = entry.$2;
+                                      _showSortFilter = false;
+                                    });
+                                  }
+                                },
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8),
+                                  child: Row(
+                                    children: [
+                                      if ((_sortBy == entry.$2) ||
+                                          (entry.$1 == 'top' &&
+                                              _sortBy == 'Top'))
+                                        Container(
+                                            width: 6,
+                                            height: 6,
+                                            decoration: BoxDecoration(
+                                                color: accent,
+                                                shape: BoxShape.circle)),
+                                      if ((_sortBy == entry.$2) ||
+                                          (entry.$1 == 'top' &&
+                                              _sortBy == 'Top'))
+                                        const SizedBox(width: 10),
+                                      Text(entry.$2,
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: (_sortBy == entry.$2 ||
+                                                    (entry.$1 == 'top' &&
+                                                        _sortBy == 'Top'))
+                                                ? FontWeight.w600
+                                                : FontWeight.w400,
+                                          )),
+                                    ],
+                                  ),
+                                ),
+                              )),
                         ],
                       ),
                     ),
@@ -373,7 +326,7 @@ class _PostListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 14),
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -400,13 +353,6 @@ class _PostListTile extends StatelessWidget {
                 const SizedBox(height: 8),
                 Row(
                   children: [
-                    Icon(Icons.chat_bubble_outline,
-                        size: 14, color: Colors.grey[400]),
-                    const SizedBox(width: 4),
-                    Text('0',
-                        style:
-                            TextStyle(fontSize: 12, color: Colors.grey[500])),
-                    const SizedBox(width: 12),
                     Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 2),
