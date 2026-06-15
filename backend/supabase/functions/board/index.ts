@@ -13,18 +13,19 @@ serve(async (req: Request) => {
   const { project, error, status } = await validatePublishableKey(req);
   if (!project) return errorResponse(error!, status);
 
-  // Parse pagination params
+  // Parse params
   const url = new URL(req.url);
   const page = Math.max(1, parseInt(url.searchParams.get("page") ?? "1"));
   const pageSize = Math.min(100, Math.max(1, parseInt(url.searchParams.get("page_size") ?? "20")));
   const offset = (page - 1) * pageSize;
+  const deviceId = url.searchParams.get("device_id");
 
-  // Query posts
   const supabase = createClient(
     Deno.env.get("SUPABASE_URL")!,
     Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
   );
 
+  // Query posts
   const { data: posts, error: queryError } = await supabase
     .from("posts")
     .select("id, title, description, status, vote_count, created_at")
@@ -36,5 +37,24 @@ serve(async (req: Request) => {
     return errorResponse("Failed to fetch posts", 500);
   }
 
-  return jsonResponse({ posts, page, page_size: pageSize });
+  // If device_id provided, check which posts this device has voted on
+  let votedPostIds: string[] = [];
+  if (deviceId && posts && posts.length > 0) {
+    const postIds = posts.map((p: { id: string }) => p.id);
+    const { data: votes } = await supabase
+      .from("votes")
+      .select("post_id")
+      .eq("device_id", deviceId)
+      .in("post_id", postIds);
+
+    votedPostIds = (votes ?? []).map((v: { post_id: string }) => v.post_id);
+  }
+
+  // Add voted_by_device flag to each post
+  const postsWithVoteStatus = (posts ?? []).map((post: { id: string }) => ({
+    ...post,
+    voted_by_device: votedPostIds.includes(post.id),
+  }));
+
+  return jsonResponse({ posts: postsWithVoteStatus, page, page_size: pageSize });
 });

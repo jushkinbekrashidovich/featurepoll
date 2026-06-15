@@ -27,6 +27,7 @@ class Post {
         status: json['status'] as String,
         voteCount: json['vote_count'] as int,
         createdAt: DateTime.parse(json['created_at'] as String),
+        votedByCurrentDevice: json['voted_by_device'] as bool? ?? false,
       );
 
   Map<String, dynamic> toJson() => {

@@ -63,7 +63,9 @@ class BoardController extends ChangeNotifier {
 
     // 2. Fetch fresh data from API
     try {
-      final fresh = await ApiClient.instance.fetchBoard();
+      final fresh = await ApiClient.instance.fetchBoard(
+        deviceId: DeviceIdManager.getDeviceId(),
+      );
       _posts = fresh;
       _isLoading = false;
       _error = null;

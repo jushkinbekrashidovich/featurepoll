@@ -110,11 +110,16 @@ class ApiClient {
   }
 
   /// Fetch board posts with pagination.
-  Future<List<Post>> fetchBoard({int page = 1, int pageSize = 20}) async {
-    final response = await _request('GET', 'board', queryParams: {
+  Future<List<Post>> fetchBoard(
+      {int page = 1, int pageSize = 20, String? deviceId}) async {
+    final params = <String, String>{
       'page': '$page',
       'page_size': '$pageSize',
-    });
+    };
+    if (deviceId != null) {
+      params['device_id'] = deviceId;
+    }
+    final response = await _request('GET', 'board', queryParams: params);
     _assertSuccess(response);
     final data = jsonDecode(response.body) as Map<String, dynamic>;
     return (data['posts'] as List)
