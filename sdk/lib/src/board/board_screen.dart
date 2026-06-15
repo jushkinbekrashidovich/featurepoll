@@ -13,7 +13,7 @@ class BoardScreen extends StatefulWidget {
 
 class _BoardScreenState extends State<BoardScreen> {
   late final BoardController _controller;
-  String _sortBy = 'Trending';
+  String _sortBy = 'Top';
   bool _showSortFilter = false;
 
   @override
@@ -173,9 +173,8 @@ class _BoardScreenState extends State<BoardScreen> {
                                           color: Colors.grey[600])),
                                   const SizedBox(height: 8),
                                   ...[
-                                    'Trending',
                                     'Top',
-                                    'New'
+                                    'All'
                                   ].map((sort) => GestureDetector(
                                         onTap: () => setState(() {
                                           _sortBy = sort;
@@ -226,9 +225,10 @@ class _BoardScreenState extends State<BoardScreen> {
                                   const SizedBox(height: 8),
                                   ...[
                                     ('open', 'Pending'),
-                                    ('planned', 'Planned'),
+                                    ('planned', 'Approved'),
                                     ('in_progress', 'In Progress'),
-                                    ('shipped', 'Complete'),
+                                    ('shipped', 'Done'),
+                                    ('declined', 'Rejected'),
                                   ].map((entry) => GestureDetector(
                                         onTap: () {
                                           _controller.setFilter(entry.$1);
@@ -268,23 +268,30 @@ class _BoardScreenState extends State<BoardScreen> {
                           onRefresh: _controller.loadBoard,
                           child: _controller.filteredPosts.isEmpty
                               ? const _EmptyState()
-                              : ListView.separated(
+                              : ListView.builder(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20),
                                   itemCount: _controller.filteredPosts.length,
-                                  separatorBuilder: (_, __) => Divider(
-                                      height: 1, color: Colors.grey.shade200),
                                   itemBuilder: (ctx, i) {
                                     final post = _controller.filteredPosts[i];
-                                    return _PostListTile(
-                                      title: post.title,
-                                      description: post.description,
-                                      voteCount: post.voteCount,
-                                      status: post.status,
-                                      isVoted: post.votedByCurrentDevice,
-                                      accentColor: accent,
-                                      onVote: () =>
-                                          _controller.toggleVote(post),
+                                    return Container(
+                                      margin: const EdgeInsets.only(bottom: 8),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: Colors.grey.shade200),
+                                        borderRadius: BorderRadius.circular(12),
+                                        color: Colors.white,
+                                      ),
+                                      child: _PostListTile(
+                                        title: post.title,
+                                        description: post.description,
+                                        voteCount: post.voteCount,
+                                        status: post.status,
+                                        isVoted: post.votedByCurrentDevice,
+                                        accentColor: accent,
+                                        onVote: () =>
+                                            _controller.toggleVote(post),
+                                      ),
                                     );
                                   },
                                 ),
@@ -335,11 +342,11 @@ class _PostListTile extends StatelessWidget {
   String get _statusLabel {
     switch (status) {
       case 'planned':
-        return 'Planned';
+        return 'Approved';
       case 'in_progress':
         return 'In Progress';
       case 'shipped':
-        return 'Complete';
+        return 'Done';
       case 'declined':
         return 'Rejected';
       default:
