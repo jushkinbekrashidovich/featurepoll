@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Hero } from "./sections/Hero";
 import { HowItWorks } from "./sections/HowItWorks";
 import { Features } from "./sections/Features";
-import { Testimonials } from "./sections/Testimonials";
-import { Comparison } from "./sections/Comparison";
 import { Pricing } from "./sections/Pricing";
 import { FounderNote } from "./sections/FounderNote";
 
@@ -50,12 +48,6 @@ export default function LandingPage() {
       </section>
       <section id="features" aria-label="Features">
         <Features />
-      </section>
-      <section aria-label="Testimonials">
-        <Testimonials />
-      </section>
-      <section aria-label="Comparison">
-        <Comparison />
       </section>
       <Pricing />
       <section aria-label="Founder note">

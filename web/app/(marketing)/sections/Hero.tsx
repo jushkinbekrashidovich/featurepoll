@@ -6,7 +6,7 @@ export function Hero() {
         <div className="flex flex-col items-center text-center">
           {/* Eyebrow */}
           <span className="inline-block rounded-full bg-accent-tint px-4 py-1.5 text-[13px] font-semibold uppercase text-accent-text tracking-wide mb-8">
-            Stop guessing. Build what users want.
+            Stop guessing what to build
           </span>
 
           {/* Headline — large and bold like datafa.st */}
@@ -32,24 +32,7 @@ export function Hero() {
             Free plan · no card required
           </p>
 
-          {/* Social proof — avatar stack */}
-          <div className="flex items-center gap-3 mt-8">
-            <div className="flex -space-x-2">
-              {["B", "A", "M", "K"].map((letter, i) => (
-                <div
-                  key={i}
-                  className="w-8 h-8 rounded-full bg-accent-tint border-2 border-page flex items-center justify-center text-xs font-semibold text-accent-text"
-                >
-                  {letter}
-                </div>
-              ))}
-            </div>
-            <span className="text-sm text-text-muted">
-              Built in public — join early
-            </span>
-          </div>
-
-          {/* Product mockup in a browser frame — below social proof */}
+          {/* Product mockup in a browser frame — below CTA */}
           <div className="mt-16 w-full max-w-2xl">
             {/* Browser chrome */}
             <div className="rounded-t-xl bg-neutral-800 px-4 py-3 flex items-center gap-3">

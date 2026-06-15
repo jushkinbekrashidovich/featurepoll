@@ -464,14 +464,8 @@ class _CreatePostPageState extends State<_CreatePostPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Feature Requests'),
+        title: const Text('Request a feature'),
         centerTitle: true,
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text('Done', style: TextStyle(color: accent)),
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -479,24 +473,6 @@ class _CreatePostPageState extends State<_CreatePostPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Create a Post',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge
-                        ?.copyWith(fontWeight: FontWeight.bold)),
-                TextButton.icon(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: const Text('SEE ALL POSTS',
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
-                  label: const Icon(Icons.arrow_forward, size: 16),
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
 
             // Title field
             Text('TITLE',
