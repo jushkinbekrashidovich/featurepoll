@@ -19,6 +19,9 @@ serve(async (req: Request) => {
   if (!title || title.trim() === "") {
     return errorResponse("Title is required", 400);
   }
+  if (title.trim().length < 10) {
+    return errorResponse("Title must be at least 10 characters", 400);
+  }
   if (!device_id) {
     return errorResponse("device_id is required", 400);
   }

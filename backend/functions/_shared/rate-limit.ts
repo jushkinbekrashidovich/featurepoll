@@ -1,11 +1,14 @@
 import { SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const LIMITS: Record<string, number> = {
-  "/posts": 10,
+  "/posts": 3,
   "/votes": 30,
 };
 
-const WINDOW_SECONDS = 60;
+const WINDOWS: Record<string, number> = {
+  "/posts": 3600,  // 1 hour cooldown for posts
+  "/votes": 60,    // 1 minute for votes
+};
 
 interface RateLimitResult {
   allowed: boolean;
@@ -19,8 +22,9 @@ export async function checkRateLimit(
   endpoint: string
 ): Promise<RateLimitResult> {
   const limit = LIMITS[endpoint] ?? 10;
+  const windowSeconds = WINDOWS[endpoint] ?? 60;
   const now = new Date();
-  const windowStart = new Date(now.getTime() - WINDOW_SECONDS * 1000);
+  const windowStart = new Date(now.getTime() - windowSeconds * 1000);
 
   // Check existing rate limit record within the current window
   const { data: existing } = await supabase
@@ -46,7 +50,7 @@ export async function checkRateLimit(
 
   // Check if window has expired
   const recordWindowStart = new Date(existing.window_start);
-  const windowEnd = new Date(recordWindowStart.getTime() + WINDOW_SECONDS * 1000);
+  const windowEnd = new Date(recordWindowStart.getTime() + windowSeconds * 1000);
 
   if (now > windowEnd) {
     // Window expired — reset
