@@ -37,12 +37,10 @@ export function SharePageClient({ projectSlug, publishableKey }: SharePageClient
   const [selectedLang, setSelectedLang] = useState<Language>("flutter");
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
-  const baseUrl = `https://${projectSlug}.featurepoll.dev`;
+  const baseUrl = `https://featurepoll.uz/${projectSlug}`;
 
   const links = [
-    { label: "Voting Board", url: `${baseUrl}/board` },
-    { label: "Roadmap", url: `${baseUrl}/roadmap` },
-    { label: "Changelog", url: `${baseUrl}/changelog` },
+    { label: "Voting Board", url: baseUrl },
   ];
 
   async function copyToClipboard(text: string, field: string) {
