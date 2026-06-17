@@ -149,10 +149,10 @@ function VoteButton({
       onClick={onClick}
       disabled={loading}
       aria-label={voted ? "Remove vote" : "Vote"}
-      className={`flex min-w-[48px] flex-col items-center rounded-lg border px-2.5 py-1.5 transition-colors active:scale-95 ${
+      className={`flex min-w-[48px] flex-col items-center rounded-lg border px-2.5 py-1.5 transition-all duration-200 active:scale-95 ${
         voted
-          ? "border-accent bg-accent-tint text-accent"
-          : "border-border bg-white text-text-muted hover:border-accent hover:text-accent"
+          ? "border-accent bg-accent-tint text-accent scale-110 shadow-sm"
+          : "border-border bg-white text-text-muted hover:border-accent hover:text-accent hover:scale-105"
       } ${loading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
     >
       <svg
@@ -185,7 +185,7 @@ function PostRow({
   votingId: string | null;
 }) {
   return (
-    <div className="flex items-center gap-4 rounded-lg border border-border bg-white px-4 py-3 shadow-sm">
+    <div className="flex items-center gap-4 rounded-lg border border-border bg-white px-4 py-3 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
       {/* Text area */}
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-semibold text-text">{post.title}</p>
@@ -379,23 +379,23 @@ export function PublicBoard({
             <span className="shrink-0 text-base font-bold text-text truncate max-w-[160px] sm:max-w-xs">
               {projectName}
             </span>
-            <nav className="flex items-center gap-1" aria-label="Board tabs">
+            <nav className="flex items-center gap-1 border-b border-transparent" aria-label="Board tabs">
               <button
                 onClick={() => setTab("requests")}
-                className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+                className={`px-4 py-2 text-sm font-medium transition-all border-b-2 ${
                   tab === "requests"
-                    ? "bg-accent-tint text-accent"
-                    : "text-text-muted hover:text-text"
+                    ? "border-accent text-accent"
+                    : "border-transparent text-text-muted hover:text-text hover:border-neutral-300"
                 }`}
               >
                 Feature Requests
               </button>
               <button
                 onClick={() => setTab("roadmap")}
-                className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+                className={`px-4 py-2 text-sm font-medium transition-all border-b-2 ${
                   tab === "roadmap"
-                    ? "bg-accent-tint text-accent"
-                    : "text-text-muted hover:text-text"
+                    ? "border-accent text-accent"
+                    : "border-transparent text-text-muted hover:text-text hover:border-neutral-300"
                 }`}
               >
                 Roadmap
@@ -489,7 +489,7 @@ export function PublicBoard({
 
                   {/* Success message */}
                   {submitted && (
-                    <p className="text-xs text-success font-medium">
+                    <p className="text-xs text-success font-medium animate-fade-in-up">
                       ✓ Request submitted!
                     </p>
                   )}

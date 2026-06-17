@@ -35,7 +35,7 @@ export function HowItWorks() {
           {steps.map((step, i) => (
             <div key={step.num} className="flex items-start">
               {/* Card */}
-              <div className="flex-1">
+              <div className="flex-1 transition-all duration-200 hover:scale-105 hover:shadow-lg rounded-card p-3">
                 {/* Image/visual placeholder area */}
                 <div className="rounded-card bg-neutral-100 border border-border aspect-[4/3] mb-5 flex items-center justify-center overflow-hidden">
                   {step.num === 1 && (

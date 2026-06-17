@@ -19,17 +19,17 @@ export async function Hero() {
         {/* Everything centered, single column */}
         <div className="flex flex-col items-center text-center">
           {/* Eyebrow */}
-          <span className="inline-block rounded-full bg-accent-tint px-4 py-1.5 text-[13px] font-semibold uppercase text-accent-text tracking-wide mb-8">
+          <span className="animate-fade-in-up inline-block rounded-full bg-accent-tint px-4 py-1.5 text-[13px] font-semibold uppercase text-accent-text tracking-wide mb-8">
             Stop guessing what to build
           </span>
 
           {/* Headline — large and bold like datafa.st */}
-          <h1 className="text-[40px] md:text-[52px] lg:text-[56px] font-bold leading-[1.1] tracking-[-1px] text-text mb-5 max-w-3xl">
-            Build what your users actually want
+          <h1 className="animate-fade-in-up-delay-1 text-[40px] md:text-[52px] lg:text-[60px] font-bold leading-[1.1] tracking-[-1px] text-text mb-5 max-w-3xl">
+            Build what your users <span className="bg-gradient-to-r from-accent to-orange-400 bg-clip-text text-transparent">actually</span> want
           </h1>
 
           {/* Subheadline — muted, smaller */}
-          <p className="text-base md:text-lg leading-relaxed text-text-muted mb-10 max-w-xl">
+          <p className="animate-fade-in-up-delay-2 text-base md:text-lg leading-relaxed text-text-muted mb-10 max-w-xl">
             Collect feature requests and votes from inside your app, your
             website, and your community — all in one place. No sign-up for your
             users.
@@ -60,7 +60,7 @@ export async function Hero() {
           )}
 
           {/* Product mockup in a browser frame — below CTA */}
-          <div className="mt-16 w-full max-w-2xl">
+          <div className="animate-fade-in-up-delay-3 animate-float mt-16 w-full max-w-2xl">
             {/* Browser chrome */}
             <div className="rounded-t-xl bg-neutral-800 px-4 py-3 flex items-center gap-3">
               {/* Traffic light dots */}

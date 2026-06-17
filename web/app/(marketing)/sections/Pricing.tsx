@@ -24,13 +24,13 @@ export function Pricing() {
           Start free, upgrade when you&apos;re ready.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto items-center">
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`rounded-card border p-8 ${
+              className={`rounded-card border p-8 transition-all duration-200 hover:shadow-lg ${
                 plan.highlighted
-                  ? "border-accent border-2 relative"
+                  ? "border-accent border-2 relative scale-105 shadow-md bg-gradient-to-b from-white to-accent-tint/30"
                   : "border-border"
               }`}
             >

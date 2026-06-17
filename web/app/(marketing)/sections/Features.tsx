@@ -45,7 +45,7 @@ export function Features() {
           {features.map((f) => (
             <div
               key={f.title}
-              className="rounded-card border border-border bg-surface p-6 pb-8"
+              className="rounded-card border border-border bg-surface p-6 pb-8 transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
             >
               {/* Title + body at top */}
               <h3 className="text-[15px] font-semibold text-text mb-1.5">
@@ -56,8 +56,8 @@ export function Features() {
               </p>
 
               {/* Visual preview area — mimics the screenshot/video areas in datafa.st */}
-              <div className="rounded-lg bg-neutral-100 border border-border aspect-[16/9] flex items-center justify-center">
-                <f.icon className="w-8 h-8 text-text-faint" />
+              <div className="rounded-lg bg-gradient-to-br from-accent-tint to-neutral-100 border border-border aspect-[16/9] flex items-center justify-center">
+                <f.icon className="w-8 h-8 text-accent" />
               </div>
             </div>
           ))}
