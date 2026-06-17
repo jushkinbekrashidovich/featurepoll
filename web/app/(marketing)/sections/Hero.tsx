@@ -1,4 +1,18 @@
-export function Hero() {
+import { createClient } from "@/lib/supabase/server";
+
+export async function Hero() {
+  let isSignedIn = false;
+
+  try {
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    isSignedIn = !!user;
+  } catch {
+    // Auth check failed — treat as not signed in
+  }
+
   return (
     <section className="bg-page pt-20 pb-24 md:pt-28 md:pb-32">
       <div className="mx-auto max-w-page px-6">
@@ -16,21 +30,34 @@ export function Hero() {
 
           {/* Subheadline — muted, smaller */}
           <p className="text-base md:text-lg leading-relaxed text-text-muted mb-10 max-w-xl">
-            Collect feature requests and votes from inside your app, your website, and your community — all in one place. No sign-up for your users.
+            Collect feature requests and votes from inside your app, your
+            website, and your community — all in one place. No sign-up for your
+            users.
           </p>
 
-          {/* CTA button — links to /login */}
-          <a
-            href="/login"
-            className="rounded-btn bg-accent px-8 py-3.5 text-sm font-semibold text-white hover:bg-accent/90 transition-colors"
-          >
-            Try it for free →
-          </a>
+          {/* CTA button — auth-aware */}
+          {isSignedIn ? (
+            <a
+              href="/app"
+              className="rounded-full bg-emerald-400 px-8 py-3 text-sm font-semibold text-white hover:bg-emerald-500 transition-colors"
+            >
+              Go to App
+            </a>
+          ) : (
+            <a
+              href="/login"
+              className="rounded-btn bg-accent px-8 py-3.5 text-sm font-semibold text-white hover:bg-accent/90 transition-colors"
+            >
+              Try it for free →
+            </a>
+          )}
 
           {/* Fine print */}
-          <p className="text-xs text-text-faint mt-3">
-            Free plan · no card required
-          </p>
+          {!isSignedIn && (
+            <p className="text-xs text-text-faint mt-3">
+              Free plan · no card required
+            </p>
+          )}
 
           {/* Product mockup in a browser frame — below CTA */}
           <div className="mt-16 w-full max-w-2xl">

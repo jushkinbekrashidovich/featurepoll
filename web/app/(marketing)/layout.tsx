@@ -1,7 +1,7 @@
 import { NavBar } from "@/components/nav-bar";
 import { Footer } from "@/components/footer";
 
-export default function MarketingLayout({
+export default async function MarketingLayout({
   children,
 }: {
   children: React.ReactNode;
